@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
-
 // bubble sort
-
 void swap (int* pa, int* pb);
 void bubble(int arr[], int n);
 void bubble_sort(int arr[], int n);
@@ -21,15 +20,19 @@ void swap (int* pa, int* pb){
     *pb = temp;
 }
 
-void bubble(int arr[], int n){
+bool bubble(int arr[], int n){
+    bool is_sorted = true;
     for (int i = 1; i < n; i++){
         if(arr[i - 1] > arr[i]){
+            is_sorted = false;
             swap(arr + i - 1, a + i);
         }
     }
 }
 void bubble_sort(int arr[], int n){
     for (int len = n; len > 1; len--){
-        bubble(arr, len);
+        if (bubble(arr, len)){
+            break;
+        }
     }
 }
